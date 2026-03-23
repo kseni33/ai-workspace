@@ -1,10 +1,15 @@
-# repo-test
-Aprendiendo GitHub
-# Mi aprendizaje en GitHub
+# AI Workspace
 
-Estoy aprendiendo a usar GitHub desde cero.
+Repositorio personal para centralizar mi trabajo en IA:
+prompts, automatizaciones y agentes.
 
-## Qué estoy aprendiendo
-- Repositorios
-- Commits
-- README
+## Contenido
+
+- /make-scenarios — Blueprints exportados de Make
+- /prompts — Prompts reutilizables (próximamente)
+- /notas — Aprendizajes y referencias (próximamente)
+
+## Agentes activos
+
+- Newsletter agent — Clasifica newsletters, 
+  las etiqueta en Gmail y envía resumen diario
