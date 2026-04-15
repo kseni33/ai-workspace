@@ -6,196 +6,38 @@
   <title>Supplier Tracker</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #f5f5f3;
-      color: #1a1a1a;
-      min-height: 100vh;
-      padding: 24px 16px 48px;
-    }
-
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f3; color: #1a1a1a; min-height: 100vh; padding: 24px 16px 48px; }
     .container { max-width: 680px; margin: 0 auto; }
-
-    h1 {
-      font-size: 18px;
-      font-weight: 500;
-      color: #1a1a1a;
-      margin-bottom: 20px;
-      letter-spacing: -0.3px;
-    }
-
-    .metrics {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-
-    .metric {
-      background: #fff;
-      border: 0.5px solid rgba(0,0,0,0.12);
-      border-radius: 10px;
-      padding: 12px 14px;
-    }
-
-    .metric-label {
-      font-size: 11px;
-      color: #888;
-      margin-bottom: 4px;
-      line-height: 1.3;
-    }
-
-    .metric-value {
-      font-size: 24px;
-      font-weight: 500;
-      color: #1a1a1a;
-      letter-spacing: -0.5px;
-    }
-
-    .form-card {
-      background: #fff;
-      border: 0.5px solid rgba(0,0,0,0.12);
-      border-radius: 12px;
-      padding: 16px;
-      margin-bottom: 16px;
-    }
-
-    .form-label {
-      font-size: 11px;
-      color: #888;
-      margin-bottom: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 120px 80px auto;
-      gap: 8px;
-      align-items: end;
-    }
-
-    .field label {
-      display: block;
-      font-size: 11px;
-      color: #888;
-      margin-bottom: 4px;
-    }
-
-    input[type="text"],
-    input[type="number"],
-    select {
-      width: 100%;
-      height: 38px;
-      border: 0.5px solid rgba(0,0,0,0.2);
-      border-radius: 8px;
-      padding: 0 10px;
-      font-size: 14px;
-      color: #1a1a1a;
-      background: #fafafa;
-      outline: none;
-      transition: border-color 0.15s;
-      -webkit-appearance: none;
-    }
-
-    input:focus, select:focus {
-      border-color: rgba(0,0,0,0.5);
-      background: #fff;
-    }
-
-    .btn-add {
-      height: 38px;
-      padding: 0 16px;
-      background: #1a1a1a;
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      font-size: 14px;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: opacity 0.15s;
-    }
-
+    h1 { font-size: 18px; font-weight: 500; color: #1a1a1a; margin-bottom: 20px; letter-spacing: -0.3px; }
+    .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
+    .metric { background: #fff; border: 0.5px solid rgba(0,0,0,0.12); border-radius: 10px; padding: 12px 14px; }
+    .metric-label { font-size: 11px; color: #888; margin-bottom: 4px; line-height: 1.3; }
+    .metric-value { font-size: 24px; font-weight: 500; color: #1a1a1a; letter-spacing: -0.5px; }
+    .form-card { background: #fff; border: 0.5px solid rgba(0,0,0,0.12); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+    .form-label { font-size: 11px; color: #888; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .form-row { display: grid; grid-template-columns: 1fr 120px 80px auto; gap: 8px; align-items: end; }
+    .field label { display: block; font-size: 11px; color: #888; margin-bottom: 4px; }
+    input[type="text"], input[type="number"], select { width: 100%; height: 38px; border: 0.5px solid rgba(0,0,0,0.2); border-radius: 8px; padding: 0 10px; font-size: 14px; color: #1a1a1a; background: #fafafa; outline: none; transition: border-color 0.15s; -webkit-appearance: none; }
+    input:focus, select:focus { border-color: rgba(0,0,0,0.5); background: #fff; }
+    .btn-add { height: 38px; padding: 0 16px; background: #1a1a1a; color: #fff; border: none; border-radius: 8px; font-size: 14px; cursor: pointer; white-space: nowrap; transition: opacity 0.15s; }
     .btn-add:hover { opacity: 0.8; }
     .btn-add:disabled { opacity: 0.35; cursor: not-allowed; }
-
-    .status {
-      font-size: 12px;
-      color: #888;
-      margin-top: 8px;
-      min-height: 16px;
-    }
-
-    .log-card {
-      background: #fff;
-      border: 0.5px solid rgba(0,0,0,0.12);
-      border-radius: 12px;
-      overflow: hidden;
-    }
-
-    .log-header {
-      display: grid;
-      grid-template-columns: 60px 1fr 90px 54px 32px;
-      gap: 8px;
-      padding: 10px 14px;
-      background: #fafafa;
-      font-size: 11px;
-      color: #888;
-      text-transform: uppercase;
-      letter-spacing: 0.4px;
-      border-bottom: 0.5px solid rgba(0,0,0,0.08);
-    }
-
-    .log-row {
-      display: grid;
-      grid-template-columns: 60px 1fr 90px 54px 32px;
-      gap: 8px;
-      padding: 11px 14px;
-      border-bottom: 0.5px solid rgba(0,0,0,0.06);
-      font-size: 13px;
-      align-items: center;
-      transition: background 0.1s;
-    }
-
+    .status { font-size: 12px; color: #888; margin-top: 8px; min-height: 16px; }
+    .log-card { background: #fff; border: 0.5px solid rgba(0,0,0,0.12); border-radius: 12px; overflow: hidden; }
+    .log-header { display: grid; grid-template-columns: 60px 1fr 90px 54px 32px; gap: 8px; padding: 10px 14px; background: #fafafa; font-size: 11px; color: #888; text-transform: uppercase; letter-spacing: 0.4px; border-bottom: 0.5px solid rgba(0,0,0,0.08); }
+    .log-row { display: grid; grid-template-columns: 60px 1fr 90px 54px 32px; gap: 8px; padding: 11px 14px; border-bottom: 0.5px solid rgba(0,0,0,0.06); font-size: 13px; align-items: center; transition: background 0.1s; }
     .log-row:last-child { border-bottom: none; }
     .log-row:hover { background: #fafafa; }
-
     .date-cell { color: #888; font-size: 12px; }
     .supplier-cell { font-weight: 500; }
     .min-cell { text-align: right; color: #888; }
-
-    .badge {
-      display: inline-block;
-      padding: 2px 8px;
-      border-radius: 20px;
-      font-size: 11px;
-      font-weight: 500;
-    }
-
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: 500; }
     .badge-llamada { background: #E6F1FB; color: #185FA5; }
     .badge-whatsapp { background: #EAF3DE; color: #3B6D11; }
     .badge-email { background: #FAEEDA; color: #854F0B; }
-
-    .btn-del {
-      background: none;
-      border: none;
-      color: #ccc;
-      cursor: pointer;
-      font-size: 13px;
-      padding: 0;
-      line-height: 1;
-      transition: color 0.15s;
-    }
+    .btn-del { background: none; border: none; color: #ccc; cursor: pointer; font-size: 13px; padding: 0; line-height: 1; transition: color 0.15s; }
     .btn-del:hover { color: #cc3333; }
-
-    .empty {
-      padding: 32px;
-      text-align: center;
-      color: #bbb;
-      font-size: 13px;
-    }
-
+    .empty { padding: 32px; text-align: center; color: #bbb; font-size: 13px; }
     @media (max-width: 520px) {
       .metrics { grid-template-columns: repeat(2, 1fr); }
       .form-row { grid-template-columns: 1fr 1fr; }
@@ -207,92 +49,49 @@
 <body>
   <div class="container">
     <h1>Supplier Tracker</h1>
-
     <div class="metrics">
-      <div class="metric">
-        <div class="metric-label">Contactos hoy</div>
-        <div class="metric-value" id="m-today-count">—</div>
-      </div>
-      <div class="metric">
-        <div class="metric-label">Minutos hoy</div>
-        <div class="metric-value" id="m-today-min">—</div>
-      </div>
-      <div class="metric">
-        <div class="metric-label">Contactos semana</div>
-        <div class="metric-value" id="m-week-count">—</div>
-      </div>
-      <div class="metric">
-        <div class="metric-label">Minutos semana</div>
-        <div class="metric-value" id="m-week-min">—</div>
-      </div>
+      <div class="metric"><div class="metric-label">Contactos hoy</div><div class="metric-value" id="m-today-count">—</div></div>
+      <div class="metric"><div class="metric-label">Minutos hoy</div><div class="metric-value" id="m-today-min">—</div></div>
+      <div class="metric"><div class="metric-label">Contactos semana</div><div class="metric-value" id="m-week-count">—</div></div>
+      <div class="metric"><div class="metric-label">Minutos semana</div><div class="metric-value" id="m-week-min">—</div></div>
     </div>
-
     <div class="form-card">
       <div class="form-label">Registrar contacto</div>
       <div class="form-row">
-        <div class="field">
-          <label>Proveedor</label>
-          <input type="text" id="f-supplier" placeholder="Nombre" autocomplete="off" />
-        </div>
-        <div class="field">
-          <label>Canal</label>
-          <select id="f-channel">
-            <option value="Llamada">Llamada</option>
-            <option value="WhatsApp">WhatsApp</option>
-            <option value="Email">Email</option>
-          </select>
-        </div>
-        <div class="field">
-          <label>Minutos</label>
-          <input type="number" id="f-minutes" min="1" max="300" placeholder="5" />
-        </div>
+        <div class="field"><label>Paciente</label><input type="text" id="f-supplier" placeholder="Nombre" autocomplete="off" /></div>
+        <div class="field"><label>Canal</label><select id="f-channel"><option value="Llamada">Llamada</option><option value="WhatsApp">WhatsApp</option><option value="Email">Email</option></select></div>
+        <div class="field"><label>Minutos</label><input type="number" id="f-minutes" min="1" max="300" placeholder="5" /></div>
         <button class="btn-add" id="btn-add" onclick="addEntry()">Añadir</button>
       </div>
       <div class="status" id="status"></div>
     </div>
-
     <div class="log-card">
-      <div class="log-header">
-        <span>Fecha</span>
-        <span>Proveedor</span>
-        <span>Canal</span>
-        <span style="text-align:right">Min.</span>
-        <span></span>
-      </div>
-      <div id="log-body">
-        <div class="empty">Cargando...</div>
-      </div>
+      <div class="log-header"><span>Fecha</span><span>Proveedor</span><span>Canal</span><span style="text-align:right">Min.</span><span></span></div>
+      <div id="log-body"><div class="empty">Cargando...</div></div>
     </div>
   </div>
 
   <script>
-    const API = 'https://script.google.com/macros/s/AKfycbzdTdKI9zeptwyrcMskSVqJ84kqzdwx8fY1L6s6hs4jJdB9VV9ysZtMYhiG3Sky98tILg/exec';
+    const API = 'https://script.google.com/macros/s/AKfycbyxQMjlmeoFAwtMpqoMZGHcs1lODzld-zDOknD5u43db8ZzslCJUsVNp4WcBvGyITiTWg/exec';
     let entries = [];
 
     function today() { return new Date().toISOString().slice(0, 10); }
-
     function startOfWeek() {
       const d = new Date(), day = d.getDay(), diff = day === 0 ? -6 : 1 - day;
       d.setDate(d.getDate() + diff);
       return d.toISOString().slice(0, 10);
     }
-
-    function formatDate(iso) {
-      const [y, m, d] = iso.split('-');
-      return d + '/' + m;
-    }
-
+    function formatDate(iso) { const [y,m,d] = iso.split('-'); return d+'/'+m; }
     function channelBadge(ch) {
       if (ch === 'Llamada') return '<span class="badge badge-llamada">Llamada</span>';
       if (ch === 'WhatsApp') return '<span class="badge badge-whatsapp">WhatsApp</span>';
       return '<span class="badge badge-email">Email</span>';
     }
-
     function setStatus(msg) { document.getElementById('status').textContent = msg; }
 
     function render() {
       const t = today(), sw = startOfWeek();
-      let tc = 0, tm = 0, wc = 0, wm = 0;
+      let tc=0, tm=0, wc=0, wm=0;
       entries.forEach(e => {
         if (e[0] === t) { tc++; tm += Number(e[3]); }
         if (e[0] >= sw) { wc++; wm += Number(e[3]); }
@@ -301,31 +100,32 @@
       document.getElementById('m-today-min').textContent = tm;
       document.getElementById('m-week-count').textContent = wc;
       document.getElementById('m-week-min').textContent = wm;
-
       const body = document.getElementById('log-body');
-      if (!entries.length) {
-        body.innerHTML = '<div class="empty">Sin registros aún</div>';
-        return;
-      }
+      if (!entries.length) { body.innerHTML = '<div class="empty">Sin registros aun</div>'; return; }
       body.innerHTML = [...entries].reverse().map((e, ri) => {
         const i = entries.length - 1 - ri;
-        return `<div class="log-row">
-          <span class="date-cell">${formatDate(e[0])}</span>
-          <span class="supplier-cell">${e[1]}</span>
-          <span>${channelBadge(e[2])}</span>
-          <span class="min-cell">${e[3]}m</span>
-          <span style="text-align:right"><button class="btn-del" onclick="delEntry(${i})">✕</button></span>
-        </div>`;
+        return '<div class="log-row">' +
+          '<span class="date-cell">' + formatDate(e[0]) + '</span>' +
+          '<span class="supplier-cell">' + e[1] + '</span>' +
+          '<span>' + channelBadge(e[2]) + '</span>' +
+          '<span class="min-cell">' + e[3] + 'm</span>' +
+          '<span style="text-align:right"><button class="btn-del" onclick="delEntry(' + i + ')">x</button></span>' +
+          '</div>';
       }).join('');
+    }
+
+    async function call(params) {
+      const url = API + '?' + new URLSearchParams(params).toString();
+      const r = await fetch(url);
+      return r.json();
     }
 
     async function loadAll() {
       try {
-        const r = await fetch(API);
-        const d = await r.json();
+        const d = await call({});
         if (d.ok) { entries = d.entries || []; render(); }
         else setStatus('Error al cargar');
-      } catch (e) { setStatus('Error de conexión'); }
+      } catch(e) { setStatus('Error de conexion'); }
     }
 
     async function addEntry() {
@@ -333,21 +133,17 @@
       const ch = document.getElementById('f-channel').value;
       const m = parseInt(document.getElementById('f-minutes').value) || 0;
       if (!s || m <= 0) { document.getElementById('f-supplier').focus(); return; }
-
       const btn = document.getElementById('btn-add');
-      btn.disabled = true;
-      setStatus('Guardando...');
-
-      const entry = { action: 'add', date: today(), supplier: s, channel: ch, minutes: m };
+      btn.disabled = true; setStatus('Guardando...');
       try {
-        await fetch(API, { method: 'POST', body: JSON.stringify(entry) });
-        entries.push([entry.date, entry.supplier, entry.channel, entry.minutes]);
+        await call({ action: 'add', date: today(), supplier: s, channel: ch, minutes: m });
+        entries.push([today(), s, ch, m]);
         render();
         document.getElementById('f-supplier').value = '';
         document.getElementById('f-minutes').value = '';
         document.getElementById('f-supplier').focus();
         setStatus('');
-      } catch (e) { setStatus('Error al guardar'); }
+      } catch(e) { setStatus('Error al guardar'); }
       btn.disabled = false;
     }
 
@@ -355,22 +151,13 @@
       const e = entries[i];
       setStatus('Eliminando...');
       try {
-        await fetch(API, {
-          method: 'POST',
-          body: JSON.stringify({ action: 'delete', date: e[0], supplier: e[1], channel: e[2], minutes: Number(e[3]) })
-        });
-        entries.splice(i, 1);
-        render();
-        setStatus('');
-      } catch (err) { setStatus('Error al eliminar'); }
+        await call({ action: 'delete', date: e[0], supplier: e[1], channel: e[2], minutes: Number(e[3]) });
+        entries.splice(i, 1); render(); setStatus('');
+      } catch(err) { setStatus('Error al eliminar'); }
     }
 
-    document.getElementById('f-supplier').addEventListener('keydown', e => {
-      if (e.key === 'Enter') document.getElementById('f-minutes').focus();
-    });
-    document.getElementById('f-minutes').addEventListener('keydown', e => {
-      if (e.key === 'Enter') addEntry();
-    });
+    document.getElementById('f-supplier').addEventListener('keydown', function(e) { if(e.key==='Enter') document.getElementById('f-minutes').focus(); });
+    document.getElementById('f-minutes').addEventListener('keydown', function(e) { if(e.key==='Enter') addEntry(); });
 
     loadAll();
   </script>
